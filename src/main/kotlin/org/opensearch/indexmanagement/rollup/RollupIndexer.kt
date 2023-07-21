@@ -116,8 +116,8 @@ class RollupIndexer(
             it.aggregations.forEach {
                 when (it) {
                     is InternalSum -> aggResults[it.name] = it.value
-                    is InternalMax -> aggResults[it.name] = it.value
-                    is InternalMin -> aggResults[it.name] = it.value
+                    is InternalMax -> if (it.value.isInfinite()) aggResults[it.name] = null else aggResults[it.name] = it.value
+                    is InternalMin -> if (it.value.isInfinite()) aggResults[it.name] = null else aggResults[it.name] = it.value
                     is InternalValueCount -> aggResults[it.name] = it.value
                     is InternalAvg -> aggResults[it.name] = it.value
                     else -> error("Found aggregation in composite result that is not supported [${it.type} - ${it.name}]")

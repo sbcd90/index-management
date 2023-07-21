@@ -1328,7 +1328,7 @@ class RollupRunnerIT : RollupRestTestCase() {
 
         generateMessageLogsData(sourceIdxTestName)
         val rollup = Rollup(
-            id = "rollup_test",
+            id = "rollup_test_max",
             schemaVersion = 1L,
             enabled = true,
             jobSchedule = IntervalSchedule(Instant.now(), 1, ChronoUnit.MINUTES),
